@@ -17,7 +17,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
           - uses: seanzhengw/sphinx-pages@master
-          id: sphinx-pages
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            create_readme: true
+            id: sphinx-pages
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              create_readme: true
