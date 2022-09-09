@@ -18,9 +18,8 @@ jobs:
       run: |
         sphinx-build src docs
     - name: Deploy
-      uses: s0/git-publish-subdir-action@develop
-      env:
-        REPO: git@github.com:Kartik9250/sphinx_uwu.git
-        BRANCH: gh-pages
-        FOLDER: src/docs
-        SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: src/docs
