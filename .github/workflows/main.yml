@@ -1,23 +1,11 @@
-name: Docs
-on: [push, pull_request, workflow_dispatch]
+on: [push]
+
 jobs:
-  docs:
+  build:
+    name: Push Sphinx Pages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - name: Install dependencies
-        run: |
-          pip install sphinx sphinx_rtd_theme myst_parser
-      - name: Generating html files
-        run: |
-          cd docs
-          make html
-      - name: Sphinx Pages Test
-        runs-on: ubuntu-latest
-        steps:
-          - uses: seanzhengw/sphinx-pages@master
-            id: sphinx-pages
-            with:
-              github_token: ${{ secrets.GITHUB_TOKEN }}
-              create_readme: true
+    - uses: seanzhengw/sphinx-pages@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        create_readme: true
