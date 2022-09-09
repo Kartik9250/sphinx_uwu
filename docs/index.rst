@@ -12,10 +12,16 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Section 1
 
    question.md
    answer.md
+
+.. toctree::
+   :caption: Section 2
+   
    answer_beni.md
+   new.md
 
 
 
