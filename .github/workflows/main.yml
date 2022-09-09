@@ -1,29 +1,3 @@
-name: Docs
-on: [push, pull_request, workflow_dispatch]
-jobs:
-  docs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2 
-      - name: Install dependencies
-        run: |
-          pip install sphinx sphinx_rtd_theme myst_parser
-      - name: Sphinx build
-        run: |
-          sphinx-build src docs
-      - name: Deploy to GitHub Pages
-        runs-on: ubuntu-latest    
-        steps:
-        - uses: actions/checkout@master
-        - name: Deploy
-          uses: s0/git-publish-subdir-action@develop
-          env:
-            REPO: self
-            BRANCH: gh-pages
-            FOLDER: src/docs/
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 name: Deploy to GitHub Pages
 on:
   push:	
