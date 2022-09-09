@@ -5,18 +5,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v2 
       - name: Install dependencies
         run: |
           pip install sphinx sphinx_rtd_theme myst_parser
       - name: Sphinx build
         run: |
           sphinx-build src docs
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        with:
-          publish_branch: gh-pages
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/
-          force_orphan: true
+    deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@master
+    - name: Deploy
+      uses: s0/git-publish-subdir-action@develop
+      env:
+        REPO: self
+        BRANCH: gh-pages
+        FOLDER: public/site
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
