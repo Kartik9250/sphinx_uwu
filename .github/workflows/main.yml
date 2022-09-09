@@ -22,5 +22,5 @@ jobs:
       env:
         REPO: git@github.com:Kartik9250/sphinx_uwu.git
         BRANCH: gh-pages
-        FOLDER: docs
+        FOLDER: src/docs
         SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
